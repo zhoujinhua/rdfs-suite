@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import com.rdfs.core.exeption.AOSException;
+import com.rdfs.core.exeption.RdfsException;
 
 
 /**
@@ -27,10 +27,10 @@ public class TypeConvertFactory {
 	 * @param type
 	 * @param format
 	 * @return
-	 * @throws AOSException
+	 * @throws RdfsException
 	 */
 	@SuppressWarnings("unused")
-	public static Object convert(Object obj, String type, String format) throws AOSException {
+	public static Object convert(Object obj, String type, String format) throws RdfsException {
 		Locale locale = new Locale("zh", "CN", "");
 		if (obj == null)
 			return null;
@@ -59,7 +59,7 @@ public class TypeConvertFactory {
 					Number tempNum = getNf(locale).parse(str);
 					return new Double(tempNum.doubleValue());
 				} catch (ParseException e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			if ("BigDecimal".equals(type) || "java.math.BigDecimal".equals(type))
 				try {
@@ -73,14 +73,14 @@ public class TypeConvertFactory {
 						return retBig.setScale(0, 5);
 					}
 				} catch (Exception e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			if ("Float".equals(type) || "java.lang.Float".equals(type))
 				try {
 					Number tempNum = getNf(locale).parse(str);
 					return new Float(tempNum.floatValue());
 				} catch (ParseException e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			if ("Long".equals(type) || "java.lang.Long".equals(type))
 				try {
@@ -89,7 +89,7 @@ public class TypeConvertFactory {
 					Number tempNum = nf.parse(str);
 					return new Long(tempNum.longValue());
 				} catch (ParseException e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			if ("Integer".equals(type) || "java.lang.Integer".equals(type))
 				try {
@@ -98,7 +98,7 @@ public class TypeConvertFactory {
 					Number tempNum = nf.parse(str);
 					return new Integer(tempNum.intValue());
 				} catch (ParseException e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			if ("Date".equals(type) || "java.sql.Date".equals(type)) {
 				if (format == null || format.length() == 0)
@@ -114,7 +114,7 @@ public class TypeConvertFactory {
 							java.util.Date fieldDate = df.parse(str);
 							return new Date(fieldDate.getTime());
 						} catch (ParseException e1) {
-							throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+							throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 						}
 					}
 				try {
@@ -122,7 +122,7 @@ public class TypeConvertFactory {
 					java.util.Date fieldDate = sdf.parse(str);
 					return new Date(fieldDate.getTime());
 				} catch (ParseException e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			}
 			if ("Timestamp".equals(type) || "java.sql.Timestamp".equals(type)) {
@@ -141,7 +141,7 @@ public class TypeConvertFactory {
 							java.util.Date fieldDate = df.parse(str);
 							return new Timestamp(fieldDate.getTime());
 						} catch (ParseException e1) {
-							throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+							throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 						}
 					}
 				try {
@@ -149,10 +149,10 @@ public class TypeConvertFactory {
 					java.util.Date fieldDate = sdf.parse(str);
 					return new Timestamp(fieldDate.getTime());
 				} catch (ParseException e) {
-					throw new AOSException("Could not convert " + str + " to " + type + ". ", e);
+					throw new RdfsException("Could not convert " + str + " to " + type + ". ", e);
 				}
 			} else {
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 			}
 		}
 		if (obj instanceof BigDecimal) {
@@ -171,7 +171,7 @@ public class TypeConvertFactory {
 			if ("Integer".equals(type))
 				return new Integer((int) Math.round(bigD.doubleValue()));
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Double) {
 			fromType = "Double";
@@ -189,7 +189,7 @@ public class TypeConvertFactory {
 			if ("BigDecimal".equals(type) || "java.math.BigDecimal".equals(type))
 				return new BigDecimal(dbl.toString());
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Float) {
 			fromType = "Float";
@@ -207,7 +207,7 @@ public class TypeConvertFactory {
 			if ("Integer".equals(type))
 				return new Integer((int) Math.round(flt.doubleValue()));
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Long) {
 			fromType = "Long";
@@ -225,7 +225,7 @@ public class TypeConvertFactory {
 			if ("Integer".equals(type) || "java.lang.Integer".equals(type))
 				return new Integer(lng.intValue());
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Integer) {
 			fromType = "Integer";
@@ -253,7 +253,7 @@ public class TypeConvertFactory {
 			if ("Integer".equals(type) || "java.lang.Integer".equals(type))
 				return obj;
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Date) {
 			fromType = "Date";
@@ -268,11 +268,11 @@ public class TypeConvertFactory {
 			if ("Date".equals(type) || "java.sql.Date".equals(type))
 				return obj;
 			if ("Time".equals(type) || "java.sql.Time".equals(type))
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 			if ("Timestamp".equals(type) || "java.sql.Timestamp".equals(type))
 				return new Timestamp(dte.getTime());
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Timestamp) {
 			fromType = "Timestamp";
@@ -291,7 +291,7 @@ public class TypeConvertFactory {
 			if ("Timestamp".equals(type) || "java.sql.Timestamp".equals(type))
 				return obj;
 			else
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 		}
 		if (obj instanceof Boolean) {
 			fromType = "Boolean";
@@ -306,13 +306,13 @@ public class TypeConvertFactory {
 				else
 					return new Integer(0);
 			} else {
-				throw new AOSException("Conversion from " + fromType + " to " + type + " not currently supported");
+				throw new RdfsException("Conversion from " + fromType + " to " + type + " not currently supported");
 			}
 		}
 		if ("String".equals(type) || "java.lang.String".equals(type))
 			return obj.toString();
 		else
-			throw new AOSException(
+			throw new RdfsException(
 					"Conversion from " + obj.getClass().getName() + " to " + type + " not currently supported");
 	}
 
@@ -326,19 +326,19 @@ public class TypeConvertFactory {
 		return nf;
 	}
 
-	public static Boolean convert2SBoolean(Object obj) throws AOSException {
+	public static Boolean convert2SBoolean(Object obj) throws RdfsException {
 		return (Boolean) convert(obj, "Boolean", null);
 	}
 
-	public static Integer convert2Integer(Object obj) throws AOSException {
+	public static Integer convert2Integer(Object obj) throws RdfsException {
 		return (Integer) convert(obj, "Integer", null);
 	}
 
-	public static String convert2String(Object obj) throws AOSException {
+	public static String convert2String(Object obj) throws RdfsException {
 		return (String) convert(obj, "String", null);
 	}
 
-	public static String convert2String(Object obj, String defaultValue) throws AOSException {
+	public static String convert2String(Object obj, String defaultValue) throws RdfsException {
 		Object s = convert(obj, "String", null);
 		if (s != null)
 			return (String) s;
@@ -346,23 +346,23 @@ public class TypeConvertFactory {
 			return "";
 	}
 
-	public static Long convert2Long(Object obj) throws AOSException {
+	public static Long convert2Long(Object obj) throws RdfsException {
 		return (Long) convert(obj, "Long", null);
 	}
 
-	public static Double convert2Double(Object obj) throws AOSException {
+	public static Double convert2Double(Object obj) throws RdfsException {
 		return (Double) convert(obj, "Double", null);
 	}
 
-	public static BigDecimal convert2BigDecimal(Object obj, int scale) throws AOSException {
+	public static BigDecimal convert2BigDecimal(Object obj, int scale) throws RdfsException {
 		return ((BigDecimal) convert(obj, "BigDecimal", null)).setScale(scale, 5);
 	}
 
-	public static Date convert2SqlDate(Object obj, String format) throws AOSException {
+	public static Date convert2SqlDate(Object obj, String format) throws RdfsException {
 		return (Date) convert(obj, "Date", format);
 	}
 
-	public static Timestamp convert2Timestamp(Object obj, String format) throws AOSException {
+	public static Timestamp convert2Timestamp(Object obj, String format) throws RdfsException {
 		return (Timestamp) convert(obj, "Timestamp", format);
 	}
 }

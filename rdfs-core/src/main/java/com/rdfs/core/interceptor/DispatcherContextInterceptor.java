@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.rdfs.core.spring.SpringDispatcherContextHolder;
+import com.rdfs.core.utils.AuthUtil;
 
 /**
  * 拦截没有登陆请求下访问方法
@@ -25,15 +26,20 @@ public class DispatcherContextInterceptor extends
 			HttpServletResponse response, Object handler) {
 		
 		try {
-			 
+			String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
+			/*String render = request.getHeader("Referer");
 			HttpSession session = request.getSession();
 	        Object obj = session.getAttribute("loginUser");
-			//String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
 			
 			if(obj ==null){
 	    		response.sendError(405);
 				response.sendRedirect(request.getContextPath() + redirectURL);
-		    }
+		    }*/
+			boolean flag = AuthUtil.compareUserDto(request);
+	        if(!flag){
+	        	response.sendError(405);
+				response.sendRedirect(request.getContextPath() + redirectURL);
+	        }
 			SpringDispatcherContextHolder.initDispatcherContext(response);
 		} catch (IOException e) {
 			return false;

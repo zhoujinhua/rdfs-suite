@@ -12,13 +12,13 @@ import com.rdfs.core.utils.ExceptionInfoUtil;
  * 
  * @author xiongchun
  */
-public class AOSException extends RuntimeException {
+public class RdfsException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static Logger log = LoggerFactory.getLogger(AOSException.class);
+	private static Logger log = LoggerFactory.getLogger(RdfsException.class);
 
-	public AOSException() {
+	public RdfsException() {
 		super();
 	}
 
@@ -28,7 +28,7 @@ public class AOSException extends RuntimeException {
 	 * @param errID
 	 * @param args
 	 */
-	public AOSException(int errID, Object... args) {
+	public RdfsException(int errID, Object... args) {
 		super("异常编号：" + errID);
 		ExceptionVO vo = ExceptionInfoUtil.getExceptionInfo(String.valueOf(errID));
 		if (RdfsUtils.isNotEmpty(vo)) {
@@ -47,7 +47,7 @@ public class AOSException extends RuntimeException {
 	 * 
 	 * @param errID
 	 */
-	public AOSException(int errID) {
+	public RdfsException(int errID) {
 		super("异常编号：" + errID);
 		ExceptionVO vo = ExceptionInfoUtil.getExceptionInfo(String.valueOf(errID));
 		if (RdfsUtils.isNotEmpty(vo)) {
@@ -67,7 +67,7 @@ public class AOSException extends RuntimeException {
 	 * @param pMsg
 	 * @param pNestedException
 	 */
-	public AOSException(String pMsg) {
+	public RdfsException(String pMsg) {
 		super(pMsg);
 		log.error(pMsg);
 	}
@@ -78,7 +78,7 @@ public class AOSException extends RuntimeException {
 	 * @param pMsg
 	 * @param pNestedException
 	 */
-	public AOSException(String pMsg, Throwable pNestedException) {
+	public RdfsException(String pMsg, Throwable pNestedException) {
 		super(pMsg);
 		pNestedException.printStackTrace();
 	}
@@ -89,7 +89,7 @@ public class AOSException extends RuntimeException {
 	 * @param pMsg
 	 * @param pNestedException
 	 */
-	public AOSException(Throwable pNestedException) {
+	public RdfsException(Throwable pNestedException) {
 		super(pNestedException);
 		pNestedException.printStackTrace();
 	}

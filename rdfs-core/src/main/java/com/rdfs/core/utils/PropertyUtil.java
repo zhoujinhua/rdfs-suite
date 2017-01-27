@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.rdfs.core.bean.HashDto;
-import com.rdfs.core.exeption.AOSException;
+import com.rdfs.core.exeption.RdfsException;
 import com.rdfs.core.service.Dto;
 
 
@@ -50,7 +50,7 @@ public class PropertyUtil {
 			parametersDto.put(DEFAULT, defaultProperties);
 			//to add other properties
 		} catch (Exception e) {
-			throw new AOSException("装载属性资源参数文件出错.", e);
+			throw new RdfsException("装载属性资源参数文件出错.", e);
 		}
 	}
 	
