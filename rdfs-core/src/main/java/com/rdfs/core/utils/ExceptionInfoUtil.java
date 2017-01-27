@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.rdfs.core.bean.HashDto;
-import com.rdfs.core.exeption.AOSException;
+import com.rdfs.core.exeption.RdfsException;
 import com.rdfs.core.exeption.ExceptionVO;
 import com.rdfs.core.service.Dto;
 
@@ -57,7 +57,7 @@ public class ExceptionInfoUtil {
 				parameterCacheDto.put(id, exceptionVO);
 			}
 		} catch (Exception e) {
-			throw new AOSException("解析XML异常参数配置文件出错.", e);
+			throw new RdfsException("解析XML异常参数配置文件出错.", e);
 		}
 	}
 

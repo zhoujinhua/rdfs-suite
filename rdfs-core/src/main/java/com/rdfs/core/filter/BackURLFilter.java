@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.rdfs.core.utils.AuthUtil;
+
 /**
  *拦截没有登陆情况下方view文件夹下的JSP页面
  * Version: 1.0
@@ -31,12 +33,19 @@ public class BackURLFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         
         String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
+        
+        boolean flag = AuthUtil.compareUserDto(request);
+        if(!flag && uri.indexOf("index.jsp")==-1){
+        	response.sendError(405);
+			return;
+        }
+        /*String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
         HttpSession session = request.getSession();
         Object obj = session.getAttribute("loginUser");
 		if(obj ==null){
 			response.sendError(405);
 			return;
-		}
+		}*/
 		filterChain.doFilter(servletRequest, servletResponse);
     }
     

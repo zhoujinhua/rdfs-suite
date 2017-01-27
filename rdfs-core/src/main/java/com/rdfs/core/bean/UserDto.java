@@ -5,6 +5,11 @@ import java.io.Serializable;
 public class UserDto implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7937470720257852491L;
+
+	/**
 	 * 登录用户ID
 	 */
 	private String userId;
@@ -13,6 +18,8 @@ public class UserDto implements Serializable{
 	 * 随机用户标识
 	 */
 	private String juid;
+	
+	private String password;
 	
 	/**
 	 * 登录名
@@ -133,6 +140,14 @@ public class UserDto implements Serializable{
 
 	public void setLoginTime(String loginTime) {
 		this.loginTime = loginTime;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
