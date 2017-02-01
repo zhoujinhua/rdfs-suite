@@ -116,7 +116,9 @@ public class Constants {
 		public static final String PARAM_KEY = GLOBAL + "param_";
 		// 数据字典
 		public static final String DIC_KEY = GLOBAL + "dic_";
-		// 在线用户集合
-		public static final String USER_LIST_KEY = GLOBAL + "online_users_";
+		
+		public static final String REGION_KEY = GLOBAL + "region_";
+		//省份
+		public static final String REGION_PROVINCE_KEY = GLOBAL + "region_province_";
 	}
 }
