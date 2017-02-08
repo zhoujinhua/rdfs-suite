@@ -21,10 +21,6 @@ import com.rdfs.core.service.Dto;
 
 /**
  * <b>JSON资料格式处理类</b>
- * 
- * @author xiongchun
- * @since 1.0
- * @date 2009-10-06
  */
 public class JsonUtil {
 

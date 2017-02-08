@@ -15,8 +15,6 @@ import com.rdfs.core.exeption.RdfsException;
 
 /**
  * <b>类型转换工具类</b>
- * 
- * @author xiongchun
  */
 public class TypeConvertFactory {
 

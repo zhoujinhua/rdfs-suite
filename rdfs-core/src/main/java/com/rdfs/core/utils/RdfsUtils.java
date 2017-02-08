@@ -46,10 +46,6 @@ import com.rdfs.core.velocity.VelocityHelper;
 
 /**
  * <b>辅助工具类</b>
- * 
- * @author xiongchun
- * @since 1.0
- * @date 2009-1-22
  */
 @SuppressWarnings("all")
 public class RdfsUtils {
