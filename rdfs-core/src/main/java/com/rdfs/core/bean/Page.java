@@ -7,9 +7,6 @@ import com.rdfs.core.contants.Constants;
 
 /**
  * 分页Page对象
- * @author zhoufei
- *
- * @param <E>
  */
 public class Page<E> {
 

@@ -9,10 +9,6 @@ import com.rdfs.core.redis.JedisUtil;
 import redis.clients.jedis.Jedis;
 
 /**
- * <b>ID工具类</b>
- * 
- * @author xiongchun
- * @date 2014-06-01
  */
 public class RdfsId {
 	

@@ -10,9 +10,6 @@ import com.rdfs.core.utils.RdfsUtils;
 
 /**
  * Bean属性复制工具类的日期类型转换器
- * 
- * @author xiongchun
- * @date 2015-10-25
  */
 public class BeanUtilsDateConverter implements Converter {
 

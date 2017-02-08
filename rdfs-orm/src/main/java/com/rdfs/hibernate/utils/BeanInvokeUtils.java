@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * get and set field
- * @author zhoufei
  *
  */
 public class BeanInvokeUtils {

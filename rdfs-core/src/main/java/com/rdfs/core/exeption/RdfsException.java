@@ -9,8 +9,6 @@ import com.rdfs.core.utils.ExceptionInfoUtil;
 
 /**
  * <b>系统异常类</b>
- * 
- * @author xiongchun
  */
 public class RdfsException extends RuntimeException {
 

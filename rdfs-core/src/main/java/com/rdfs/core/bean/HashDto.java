@@ -20,10 +20,6 @@ import com.rdfs.core.service.Dto;
  * <p>
  * 对原生Java Map类型的二次包装，提供<b><i>更加方便的存取API、更强的容错和类型转换机制。</i></b>
  * 在平台二次开发过程中具有很强的实用价值。 开发人员需熟练掌握其提供的相关API。
- * </p>
- * 
- * @author xiongchun
- * @date 2008-07-06
  */
 public class HashDto extends HashMap<String, Object> implements Dto {
 

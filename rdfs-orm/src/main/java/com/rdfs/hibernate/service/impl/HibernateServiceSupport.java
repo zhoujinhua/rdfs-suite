@@ -64,7 +64,7 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 	
 	@Override
 	public <T extends Serializable> List<T> getList(T t, String...params) {
-		return getList(t, null, null, null, params);
+		return getList(t, OperMode.EQ, params);
 	}
 	
 	@Override

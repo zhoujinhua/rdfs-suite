@@ -18,11 +18,6 @@ import com.rdfs.core.utils.RdfsUtils;
 
 /**
  * <b>Velocity模板引擎辅助类</b>
- * 
- * @author xiongchun
- * @since 1.0
- * @date 2008-06-06
- * @lastmodify 2013-08-10
  */
 public class VelocityHelper {
 	

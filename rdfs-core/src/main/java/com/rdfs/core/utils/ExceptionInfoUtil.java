@@ -19,10 +19,6 @@ import com.rdfs.core.service.Dto;
 
 /**
  * <b>异常信息参数配置加载类</b>
- * 
- * @author xiongchun
- * @since 6.0
- * @date 2013-08-27
  */
 @SuppressWarnings("rawtypes")
 public class ExceptionInfoUtil {

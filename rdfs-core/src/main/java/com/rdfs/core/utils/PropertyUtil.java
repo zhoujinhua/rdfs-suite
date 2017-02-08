@@ -13,12 +13,6 @@ import com.rdfs.core.service.Dto;
 
 /**
  * <b>读取属性配置文件</b>
- * 
- * 
- * @author xiongchun
- * @since 1.0
- * @date 2009-10-06
- * @lastmodify 2013-08-18
  */
 public class PropertyUtil {
 	

@@ -2,9 +2,6 @@ package com.rdfs.core.exeption;
 
 /**
  * <b>异常信息VO</b>
- * 
- * @author xiongchun
- * @date 2009-04-06
  */
 public class ExceptionVO {
 	

@@ -14,7 +14,6 @@ import com.rdfs.core.utils.AuthUtil;
 
 /**
  * 解决超时访问问题
- * @author zhoufei
  *
  */
 public class AjaxSessionTimeoutFilter implements Filter {

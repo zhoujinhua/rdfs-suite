@@ -5,10 +5,6 @@ public class Constants {
     
     public static final String COMMAND = "command";
     
-    public static final String SUCCESS = "1";
-    
-    public static final String ERROR = "0";
-    
     /**
 	 * Dto对象中的内部变量：交易状态码
 	 */
@@ -33,16 +29,6 @@ public class Constants {
 	 * 排序器在参数对象中的Key
 	 */
 	public static final String ORDER_KEY = "order";
-	
-	/**
-	 * 分页查询起始位置
-	 */
-	public static final String START_KEY = "start";
-	
-	/**
-	 * 分页查询步长
-	 */
-	public static final String LENGTH_KEY = "length";
 	
 	/**
 	 * 控制台醒目标记1
@@ -108,10 +94,6 @@ public class Constants {
 		public static final String ID = GLOBAL + "id_";
 		// 功能权限授权命名空间 (方便缓存重置)
 		public static final String FUNCTION_GRANT = GLOBAL + "grant_";
-		// 卡片组
-		public static final String CARDLIST = FUNCTION_GRANT + "card_";
-		// 卡片导航树
-		public static final String CARD_TREE = FUNCTION_GRANT + "card_tree_";
 		// 全局参数
 		public static final String PARAM_KEY = GLOBAL + "param_";
 		// 数据字典
@@ -120,5 +102,11 @@ public class Constants {
 		public static final String REGION_KEY = GLOBAL + "region_";
 		//省份
 		public static final String REGION_PROVINCE_KEY = GLOBAL + "region_province_";
+		
+		public static final String DEALER_KEY = GLOBAL + "dealer_";
+		
+		public static final String DEALER_COMPANY_KEY = GLOBAL + "dealer_company_";
+		
+		public static final String USER_KEY = GLOBAL + "user_";
 	}
 }
