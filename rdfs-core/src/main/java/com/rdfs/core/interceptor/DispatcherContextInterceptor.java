@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.rdfs.core.spring.SpringDispatcherContextHolder;
 import com.rdfs.core.utils.AuthUtil;
@@ -26,19 +25,14 @@ public class DispatcherContextInterceptor extends
 			HttpServletResponse response, Object handler) {
 		
 		try {
-			String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
-			/*String render = request.getHeader("Referer");
-			HttpSession session = request.getSession();
-	        Object obj = session.getAttribute("loginUser");
+			String juid = AuthUtil.getJuid(request);
 			
-			if(obj ==null){
-	    		response.sendError(405);
-				response.sendRedirect(request.getContextPath() + redirectURL);
-		    }*/
 			boolean flag = AuthUtil.compareUserDto(request);
 	        if(!flag){
 	        	response.sendError(405);
 				response.sendRedirect(request.getContextPath() + redirectURL);
+	        } else {
+	        	AuthUtil.heartbeat(juid); //维持心跳
 	        }
 			SpringDispatcherContextHolder.initDispatcherContext(response);
 		} catch (IOException e) {

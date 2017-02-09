@@ -11,7 +11,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.rdfs.core.utils.AuthUtil;
 
@@ -31,21 +30,16 @@ public class BackURLFilter implements Filter{
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        
         String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
+        String juid = AuthUtil.getJuid(request);
         
         boolean flag = AuthUtil.compareUserDto(request);
         if(!flag && uri.indexOf("index.jsp")==-1){
         	response.sendError(405);
 			return;
+        } else {
+        	AuthUtil.heartbeat(juid);
         }
-        /*String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
-        HttpSession session = request.getSession();
-        Object obj = session.getAttribute("loginUser");
-		if(obj ==null){
-			response.sendError(405);
-			return;
-		}*/
 		filterChain.doFilter(servletRequest, servletResponse);
     }
     

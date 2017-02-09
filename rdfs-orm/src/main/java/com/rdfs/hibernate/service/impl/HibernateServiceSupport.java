@@ -115,13 +115,15 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 	}
 	
 	@Override
-	public <T extends Serializable> void saveEntity(T t) {
+	public <T extends Serializable> T saveEntity(T t) {
 		getSession().persist(t);
+		return t;
 	}
 
 	@Override
-	public <T extends Serializable> void updateEntity(T t, String... params) {
+	public <T extends Serializable> T updateEntity(T t, String... params) {
 		getSession().update(t, params);
+		return t;
 	}
 
 	@Override

@@ -2,8 +2,6 @@ package com.rdfs.core.bean;
 
 import java.util.List;
 
-import com.rdfs.core.contants.Constants;
-
 
 /**
  * 分页Page对象
@@ -11,7 +9,7 @@ import com.rdfs.core.contants.Constants;
 public class Page<E> {
 
 	private int count; //记录数
-	private int size = Constants.DEFAULT_PAGE_SIZE; //每页记录数
+	private int size ; //每页记录数
 	private int num;   //当前页号
 	private List<E> items; //记录内容
 	

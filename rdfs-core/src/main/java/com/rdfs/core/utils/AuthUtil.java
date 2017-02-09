@@ -7,7 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.rdfs.core.bean.UserDto;
+import com.rdfs.core.contants.Constants;
 import com.rdfs.core.redis.JedisUtil;
+
+import redis.clients.jedis.Jedis;
 
 
 public class AuthUtil {
@@ -25,12 +28,6 @@ public class AuthUtil {
 		if (RdfsUtils.isEmpty(juid)) {
 			juid = request.getParameter("juid");
 		}
-		/*String render = request.getHeader("Referer");
-		if(render.indexOf("?") != -1 && render.indexOf("juid")!=-1){
-			String juid = render.substring(render.indexOf("juid")+5,render.length());
-			return juid;
-		}
-		return null;*/
 		return juid;
 	}
 	
@@ -57,23 +54,48 @@ public class AuthUtil {
 		return UserDto;
 	}
 	
+	/**
+	 * 用户心跳维持
+	 * 
+	 * @param juid
+	 */
+	public static void heartbeat(String juid){
+		JedisUtil.exprString(juid, Integer.valueOf(getParam("user_login_timeout_")));
+	}
+	
+	/**
+	 * 从缓存中获取全局参数配置值
+	 * @param key
+	 * @return
+	 */
+	public static String getParam(String key){
+		String value = StringUtils.EMPTY;
+		if (RdfsUtils.isEmpty(key)) {
+			log.error("获取参数失败：全局参数配置Key不能为空。");
+			return value;
+		}
+		Jedis jedis = JedisUtil.getJedisClient();
+		value = jedis.hget(Constants.KEYS.PARAM_KEY, key);
+		JedisUtil.close(jedis);
+		return value;
+	}
+	
+	/**
+	 * 比较用户信息
+	 * @param request
+	 * @return
+	 */
 	public static boolean compareUserDto(HttpServletRequest request){
-		//String render = request.getHeader("Referer");
-		//if(!StringUtils.isBlank(render)&&render.indexOf("?") != -1 && render.indexOf("juid")!=-1){
-			//String juid = render.substring(render.indexOf("juid")+5,render.length());
-			UserDto userDto = getUserDto(request);
-			if(userDto!=null){
-				//if(userDto.getJuid().equals(juid)){
-					String clientIp = getClientIpAddr(request);
-					String clientKey = request.getHeader("USER-AGENT");
-					if(!StringUtils.isBlank(userDto.getClientIp()) && !StringUtils.isBlank(clientIp) && userDto.getClientIp().equals(clientIp)){
-						if(!StringUtils.isBlank(userDto.getClientKey()) && !StringUtils.isBlank(clientKey) && userDto.getClientKey().equals(clientKey)){
-							return true;
-						}
-					}
-				//}
+		UserDto userDto = getUserDto(request);
+		if(userDto!=null){
+			String clientIp = getClientIpAddr(request);
+			String clientKey = request.getHeader("USER-AGENT");
+			if(!StringUtils.isBlank(userDto.getClientIp()) && !StringUtils.isBlank(clientIp) && userDto.getClientIp().equals(clientIp)){
+				if(!StringUtils.isBlank(userDto.getClientKey()) && !StringUtils.isBlank(clientKey) && userDto.getClientKey().equals(clientKey)){
+					return true;
+				}
 			}
-		//}
+		}
 		return false;
 	}
 	

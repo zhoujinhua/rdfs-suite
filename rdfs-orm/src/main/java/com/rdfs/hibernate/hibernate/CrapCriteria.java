@@ -24,6 +24,8 @@ import org.hibernate.transform.ResultTransformer;
 
 import com.rdfs.core.bean.Page;
 import com.rdfs.core.contants.Constants;
+import com.rdfs.core.utils.AuthUtil;
+import com.rdfs.core.utils.StringUtils;
 import com.rdfs.hibernate.enums.OperMode;
 import com.rdfs.hibernate.utils.BeanInvokeUtils;
 
@@ -141,6 +143,12 @@ public class CrapCriteria<C> implements Serializable{
 		
 		if(countNum!=null)
 			page.setCount(countNum.intValue());
+		
+		String pageSize = AuthUtil.getParam("_page_size");
+		if(StringUtils.isBlank(pageSize)){
+			pageSize = "10";
+		}
+		page.setSize(Integer.parseInt(pageSize));
 		return page;
 	}
 

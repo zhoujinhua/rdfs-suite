@@ -113,14 +113,14 @@ public interface HibernateService {
 	 * 保存对象
 	 * @param t
 	 */
-	<T extends Serializable> void saveEntity(T t);
+	<T extends Serializable> T saveEntity(T t);
 	
 	/**
 	 * 按字段更新对象
 	 * @param t
 	 * @param params
 	 */
-	<T extends Serializable> void updateEntity(T t, String...params);
+	<T extends Serializable> T updateEntity(T t, String...params);
 	
 	/**
 	 * 删除对象

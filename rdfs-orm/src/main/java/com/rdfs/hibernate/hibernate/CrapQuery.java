@@ -13,6 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.transform.ResultTransformer;
 
 import com.rdfs.core.bean.Page;
+import com.rdfs.core.utils.AuthUtil;
+import com.rdfs.core.utils.StringUtils;
 
 
 
@@ -141,6 +143,12 @@ public class CrapQuery<Q> {
 		Number cnt = (Number) cntQuery.uniqueResult();
 		if(cnt!=null)
 			page.setCount(cnt.intValue());
+		
+		String pageSize = AuthUtil.getParam("_page_size");
+		if(StringUtils.isBlank(pageSize)){
+			pageSize = "10";
+		}
+		page.setSize(Integer.parseInt(pageSize));
 		return page;
 	}
 	
