@@ -111,4 +111,11 @@ public class Constants {
 		//菜单项
 		public static final String RESOURCE_KEY = GLOBAL + "resource_";
 	}
+	
+	public static final class REDIS_TYPE{
+		public static final String STRING = "resource_";
+		public static final String LIST = "resource_";
+		public static final String MAP = "resource_";
+		public static final String SET = "resource_";
+	}
 }
