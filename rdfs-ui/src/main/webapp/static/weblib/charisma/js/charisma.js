@@ -42,14 +42,14 @@ $(document).ready(function () {
 
     function switchTheme(themeName) {
         if (themeName == 'classic') {
-            $('#bs-css').attr('href', '../bootstrap/css/bootstrap.min.css');
+            $('#bs-css').attr('href', contextPath + '/static/weblib/bootstrap/css/bootstrap.min.css');
             if($("#sub-content").contents().find("#sub-bs-css").length!=0){
-            	$("#sub-content").contents().find("#sub-bs-css").attr('href', '/mlccms/bootstrap/css/bootstrap.min.css');
+            	$("#sub-content").contents().find("#sub-bs-css").attr('href', contextPath + '/static/weblib/bootstrap/css/bootstrap.min.css');
             }
         } else {
-            $('#bs-css').attr('href', '../charisma/css/bootstrap-' + themeName + '.min.css');
+            $('#bs-css').attr('href', contextPath + '/static/weblib/charisma/css/bootstrap-' + themeName + '.min.css');
             if($("#sub-content").contents().find("#sub-bs-css").length!=0){
-            	$("#sub-content").contents().find("#sub-bs-css").attr('href', '/mlccms/charisma/css/bootstrap-' + themeName + '.min.css');
+            	$("#sub-content").contents().find("#sub-bs-css").attr('href', contextPath + '/static/weblib/charisma/css/bootstrap-' + themeName + '.min.css');
             }
         }
 
@@ -101,7 +101,7 @@ $(document).ready(function () {
     });*/
 
     //ajaxify menus
-    $('a.ajax-link').click(function (e) {
+    /*$('a.ajax-link').click(function (e) {
         if (msie) e.which = 1;
         if (e.which != 1 || !$('#is-ajax').prop('checked') || $(this).parent().hasClass('active')) return;
         e.preventDefault();
@@ -113,7 +113,7 @@ $(document).ready(function () {
         History.pushState(null, null, $clink.attr('href'));
         $('ul.main-menu li.active').removeClass('active');
         $clink.parent('li').addClass('active');
-    });
+    });*/
 
     /*$('.accordion > a').click(function (e) {
         e.preventDefault();
@@ -225,23 +225,6 @@ function docReady() {
         //alert($(this).parents('.thumbnail').attr('id'));
     });
 
-    $("input[type='int']").each(function(){
-    	var negative = $(this).attr("negative");
-    	if(negative && negative == "true"){
-    		$.Input.BoundInt("#" + $(this).attr("id"),true);
-    	} else {
-    		$.Input.BoundInt("#" + $(this).attr("id"));
-    	}
-    });
-    $("input[type='float']").each(function(){
-    	var negative = $(this).attr("negative");
-    	if(negative && negative == "true"){
-    		$.Input.BoundFloat("#" + $(this).attr("id"),true);
-    	} else {
-    		$.Input.BoundFloat("#" + $(this).attr("id"));
-    	}
-    });
-    
     //gallery colorbox
     /*$('.thumbnail a').colorbox({
         rel: 'thumbnail a',
@@ -272,13 +255,13 @@ function docReady() {
     });
 
     //tour
-    if ($('.tour').length && typeof(tour) == 'undefined') {
+    /*if ($('.tour').length && typeof(tour) == 'undefined') {
         var tour = new Tour();
         tour.addStep({
-            element: "#content", /* html element next to which the step popover should be shown */
+            element: "#content",  html element next to which the step popover should be shown 
             placement: "top",
-            title: "Custom Tour", /* title of the popover */
-            content: "You can create tour like this. Click Next." /* content of the popover */
+            title: "Custom Tour",  title of the popover 
+            content: "You can create tour like this. Click Next."  content of the popover 
         });
         tour.addStep({
             element: ".theme-container",
@@ -304,16 +287,16 @@ function docReady() {
         });
 
         tour.restart();
-    }
+    }*/
 
     //datatable
-    $('.datatable').dataTable({
+    /*$('.datatable').dataTable({
         "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
             "sLengthMenu": "_MENU_ records per page"
         }
-    });
+    });*/
     $('.btn-close').click(function (e) {
         e.preventDefault();
         $(this).parent().parent().parent().fadeOut();
@@ -383,7 +366,7 @@ function docReady() {
 
 
 //additional functions for data table
-$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
+/*$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
     return {
         "iStart": oSettings._iDisplayStart,
         "iEnd": oSettings.fnDisplayEnd(),
@@ -393,8 +376,8 @@ $.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
         "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
         "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
     };
-}
-$.extend($.fn.dataTableExt.oPagination, {
+}*/
+/*$.extend($.fn.dataTableExt.oPagination, {
     "bootstrap": {
         "fnInit": function (oSettings, nPaging, fnDraw) {
             var oLang = oSettings.oLanguage.oPaginate;
@@ -468,4 +451,4 @@ $.extend($.fn.dataTableExt.oPagination, {
             }
         }
     }
-});
+});*/
