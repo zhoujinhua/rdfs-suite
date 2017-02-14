@@ -10,7 +10,6 @@ public class   ArithUtil{
 	// 默认除法运算精度     
 	private static final int DEF_DIV_SCALE=10;
 	
-	
 	// 这个类不能实例化                                                                                                                            
 	private ArithUtil() {                                                                                                              
 	                                                                                                                             
