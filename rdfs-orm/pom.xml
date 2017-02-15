@@ -6,6 +6,7 @@
     <groupId>com.rdfs</groupId>
     <artifactId>rdfs-parent</artifactId>
     <version>1.0.0</version>
+      <relativePath></relativePath>
   </parent>
   <artifactId>rdfs-orm</artifactId>
   <name>rdfs-orm</name>
@@ -17,17 +18,18 @@
         <dependency>  
             <groupId>org.hibernate</groupId>  
             <artifactId>hibernate-core</artifactId>  
-        </dependency>  
-  
-        <dependency>  
+        </dependency>
+
+        <dependency>
             <groupId>org.hibernate</groupId>  
             <artifactId>hibernate-ehcache</artifactId>  
-        </dependency>  
+        </dependency>
+
   		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-validator</artifactId>
   		</dependency>
-		
+
         <!-- mysql连接 -->  
         <dependency>  
             <groupId>mysql</groupId>  
@@ -65,7 +67,7 @@
         <dependency>
 		    <groupId>taglibs</groupId>
 		    <artifactId>standard</artifactId>
-		</dependency>  
+		</dependency>
         <dependency>
 		    <groupId>${project.groupId}</groupId>
 		    <artifactId>rdfs-core</artifactId>
@@ -76,7 +78,13 @@
   	<plugins>
 		<plugin>  
           <groupId>org.apache.maven.plugins</groupId>  
-          <artifactId>maven-compiler-plugin</artifactId>  
+          <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.3</version>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+                <encoding>UTF-8</encoding>
+            </configuration>
        </plugin>
         <plugin>  
           <groupId>org.apache.maven.plugins</groupId>  
