@@ -6,21 +6,22 @@
     <groupId>com.rdfs</groupId>
     <artifactId>rdfs-parent</artifactId>
     <version>1.0.0</version>
+      <relativePath></relativePath>
   </parent>
   <artifactId>rdfs-ui</artifactId>
   <packaging>war</packaging>
   <dependencies>
-        <dependency>  
-            <groupId>javax.servlet</groupId>  
-            <artifactId>servlet-api</artifactId>  
-        </dependency>  
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
         <dependency>
 	    	<groupId>javax.servlet.jsp</groupId>
 		    <artifactId>jsp-api</artifactId>
 		</dependency>
 		<dependency>  
             <groupId>javax.servlet</groupId>  
-            <artifactId>jstl</artifactId>  
+            <artifactId>jstl</artifactId>
         </dependency>  
   </dependencies>
   <build>
