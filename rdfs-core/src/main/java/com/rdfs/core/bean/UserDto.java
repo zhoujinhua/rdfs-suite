@@ -61,6 +61,8 @@ public class UserDto implements Serializable{
 	 */
 	private String loginTime;
 
+	private String userType;
+
 
 	public String getJuid() {
 		return juid;
@@ -149,5 +151,12 @@ public class UserDto implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 }
