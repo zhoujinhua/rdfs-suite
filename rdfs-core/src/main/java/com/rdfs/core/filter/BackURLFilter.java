@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.rdfs.core.bean.UserDto;
 import com.rdfs.core.utils.AuthUtil;
 
 /**
@@ -32,6 +33,7 @@ public class BackURLFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getServletPath()+ (request.getPathInfo() == null ? "" : request.getPathInfo());
         String juid = AuthUtil.getJuid(request);
+        UserDto userDto = AuthUtil.getUserDto(juid);
         
         boolean flag = AuthUtil.compareUserDto(request);
         if(!flag && uri.indexOf("index.jsp")==-1){
@@ -39,6 +41,7 @@ public class BackURLFilter implements Filter{
 			return;
         } else {
         	AuthUtil.heartbeat(juid);
+        	AuthUtil.setCurrentUserDto(userDto);
         }
 		filterChain.doFilter(servletRequest, servletResponse);
     }

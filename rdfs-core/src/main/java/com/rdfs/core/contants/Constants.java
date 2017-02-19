@@ -102,6 +102,8 @@ public class Constants {
 		public static final String REGION_KEY = GLOBAL + "region_";
 		//省份
 		public static final String REGION_PROVINCE_KEY = GLOBAL + "region_province_";
+
+		public static final String REGION_CITY_KEY = GLOBAL + "region_city_";
 		
 		public static final String DEALER_KEY = GLOBAL + "dealer_";
 		
@@ -110,6 +112,12 @@ public class Constants {
 		public static final String USER_KEY = GLOBAL + "user_";
 		//菜单项
 		public static final String RESOURCE_KEY = GLOBAL + "resource_";
+		
+		public static final String APP_SEQ = GLOBAL + "app_seq_";
+		
+		public static final String BRAND_KEY = GLOBAL + "brand_";
+
+		public static final String BRAND_SERIES_KEY = GLOBAL + "brand_series_";
 	}
 	
 	public static final class REDIS_TYPE{

@@ -125,6 +125,18 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 		getSession().update(t, params);
 		return t;
 	}
+	
+	@Override
+	public <T extends Serializable> T updateEntity(T t) {
+		getSession().update(t);
+		return t;
+	}
+	
+	@Override
+	public <T extends Serializable> T mergeEntity(T t) {
+		getSession().merge(t);
+		return t;
+	}
 
 	@Override
 	public <T extends Serializable> void deleteEntity(T t) {
@@ -137,7 +149,7 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 		if(init && t!=null){
 			Field[] fields = type.getDeclaredFields();
 			for(Field field : fields){
-				if(field.getType().getSimpleName().equals("List")){
+				if(!field.getType().getSimpleName().equals("Date") && !field.getType().isPrimitive()){
 					try {
 						Hibernate.initialize(BeanInvokeUtils.invokeMethod(t, field.getName()));
 					} catch (Exception e) {
@@ -155,7 +167,7 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 		if(init && t!=null){
 			Field[] fields = type.getDeclaredFields();
 			for(Field field : fields){
-				if(field.getType().getSimpleName().equals("List")){
+				if(!field.getType().getSimpleName().equals("Date") && !field.getType().isPrimitive()){
 					try {
 						Hibernate.initialize(BeanInvokeUtils.invokeMethod(t, field.getName()));
 					} catch (Exception e) {

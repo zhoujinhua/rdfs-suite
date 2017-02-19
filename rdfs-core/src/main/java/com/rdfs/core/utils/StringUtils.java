@@ -325,4 +325,14 @@ public class StringUtils {
 
 		return false;
 	}
+	
+	public static boolean compare(Object obj1, Object obj2){
+		if((obj1==null&&obj2==null)||
+    				(obj1!=null&&obj2!=null&&obj1.toString().equals(obj2.toString()))||
+    				(obj1==null&&obj2!=null&&obj2.toString().equals(""))||
+    				(obj2==null&&obj1!=null&&obj1.toString().equals(""))){
+			return true;
+		}
+		return false;
+	}
 }

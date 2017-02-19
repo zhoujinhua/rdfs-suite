@@ -15,8 +15,25 @@ import redis.clients.jedis.Jedis;
 
 public class AuthUtil {
 
+	private static final ThreadLocal<UserDto> localVisitor = new ThreadLocal<UserDto>();
 	private static Logger log = LoggerFactory.getLogger(AuthUtil.class);
 
+	/**
+	 * 设置当前线程用户信息
+	 * @param userDto
+	 */
+	public static synchronized void setCurrentUserDto(UserDto userDto){
+		localVisitor.set(userDto);
+	}
+
+	/**
+	 * 取当前登录用户
+	 * @return
+	 */
+	public static UserDto getCurrentUserDto(){
+		return localVisitor.get();
+	}
+	
 	/**
 	 * 获取JUID
 	 * 
@@ -60,7 +77,11 @@ public class AuthUtil {
 	 * @param juid
 	 */
 	public static void heartbeat(String juid){
-		JedisUtil.exprString(juid, Integer.valueOf(getParam("user_login_timeout_")));
+		String value = getParam("user_login_timeout_");
+		if(StringUtils.isBlank(value)){
+			value = "18000";
+		}
+		JedisUtil.exprString(juid, Integer.valueOf(value));
 	}
 	
 	/**

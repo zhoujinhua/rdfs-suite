@@ -1085,6 +1085,8 @@ public class RdfsUtils {
 	 * 
 	 * @param args
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
+		System.out.println(date2String(new Date(), "yyyyMMddHHmmss"));
+		System.out.println(new Date().getTime());
 	}
 }

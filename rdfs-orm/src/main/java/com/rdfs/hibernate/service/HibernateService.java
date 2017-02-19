@@ -116,12 +116,25 @@ public interface HibernateService {
 	<T extends Serializable> T saveEntity(T t);
 	
 	/**
+	 * 更新整个对象
+	 * @param t
+	 * @return
+	 */
+	<T extends Serializable> T updateEntity(T t);
+	
+	/**
 	 * 按字段更新对象
 	 * @param t
 	 * @param params
 	 */
 	<T extends Serializable> T updateEntity(T t, String...params);
 	
+	/**
+	 * 更新保存对象
+	 * @param t
+	 * @return
+	 */
+	<T extends Serializable> T mergeEntity(T t);
 	/**
 	 * 删除对象
 	 * @param t
@@ -145,6 +158,8 @@ public interface HibernateService {
 	 * @return
 	 */
 	<T extends Serializable> T getEntityByCode(Class<T> type, String id, boolean init);
+
+
 
 
 }
