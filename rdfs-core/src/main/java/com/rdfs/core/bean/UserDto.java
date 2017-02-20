@@ -32,6 +32,11 @@ public class UserDto implements Serializable{
 	private String trueName;
 	
 	/**
+	 * 用户类型
+	 */
+	private String userType;
+	
+	/**
 	 * 性别
 	 */
 	private String sex;
@@ -148,6 +153,14 @@ public class UserDto implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 	
 }
