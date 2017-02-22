@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rdfs.core.utils.StringUtils;
+
 /**
  * get and set field
  *
@@ -34,6 +36,9 @@ public class BeanInvokeUtils {
 			while(i < part.length){
 				String method = part[i].substring(0, 1).toUpperCase() + part[i].substring(1);
 				obj = invokeMethodMain(obj, method);
+				if(StringUtils.isBlankObj(obj)){
+					break;
+				}
 				i++;
 			}
 		} else {
@@ -87,15 +92,5 @@ public class BeanInvokeUtils {
 	public static Object invokeStaticField(Class<?> clazz, String methodName) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
 		Field field = clazz.getDeclaredField(methodName);
 		return field.get(null);
-	}
-	public static void main(String[] args) {
-		/*for(Field field : Dict.class.getDeclaredFields()){
-			System.out.println(field.getName());
-		}*/
-		test("name","code");
-		
-	}
-	static void test(String...params){
-		System.out.println(params.toString());
 	}
 }
