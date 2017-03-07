@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtils {
 
@@ -334,5 +336,16 @@ public class StringUtils {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	* 正则表达式字符串
+	* 要匹配的字符串
+	* @return 如果str 符合 regex的正则表达式格式,返回true, 否则返回 false;
+	*/
+	public static boolean match(String regex, String str) {
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(str);
+		return matcher.matches();
 	}
 }

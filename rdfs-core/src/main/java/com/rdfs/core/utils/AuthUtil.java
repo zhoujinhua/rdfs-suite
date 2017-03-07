@@ -5,7 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.ServletRequestUtils;
 
+import com.rdfs.core.bean.Page;
 import com.rdfs.core.bean.UserDto;
 import com.rdfs.core.contants.Constants;
 import com.rdfs.core.redis.JedisUtil;
@@ -146,4 +149,23 @@ public class AuthUtil {
 		return ip;
 	}
 
+	public static Page getPage(HttpServletRequest request){
+		Page page = new Page();
+		try {
+			page.setStart(ServletRequestUtils.getIntParameter(request, "start", 0));
+			Integer length = ServletRequestUtils.getIntParameter(request, "length");
+			if(length == null || length.intValue() == 0){
+				String value = getParam("_page_size");
+				if(value == null || "".equals(value)){
+					value = "10";
+				}
+				length = Integer.parseInt(value);
+			}
+			page.setLimit(length);
+		} catch (ServletRequestBindingException e) {
+			e.printStackTrace();
+			log.error("封装page对象失败,",e);
+		}
+		return page;
+	}
 }

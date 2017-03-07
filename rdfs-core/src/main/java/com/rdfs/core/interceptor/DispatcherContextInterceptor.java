@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.rdfs.core.bean.UserDto;
 import com.rdfs.core.spring.SpringDispatcherContextHolder;
 import com.rdfs.core.utils.AuthUtil;
 
@@ -26,6 +27,7 @@ public class DispatcherContextInterceptor extends
 		
 		try {
 			String juid = AuthUtil.getJuid(request);
+			UserDto userDto = AuthUtil.getUserDto(juid);
 			
 			boolean flag = AuthUtil.compareUserDto(request);
 	        if(!flag){
@@ -33,6 +35,7 @@ public class DispatcherContextInterceptor extends
 				response.sendRedirect(request.getContextPath() + redirectURL);
 	        } else {
 	        	AuthUtil.heartbeat(juid); //维持心跳
+	        	AuthUtil.setCurrentUserDto(userDto);
 	        }
 			SpringDispatcherContextHolder.initDispatcherContext(response);
 		} catch (IOException e) {

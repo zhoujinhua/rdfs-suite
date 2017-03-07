@@ -21,7 +21,7 @@ public interface HibernateService {
 	 * @param params 查询字段
 	 * @return
 	 */
-	<T extends Serializable> Page<T> pageList(T t, int pn, OrderMode orderMode, String orderParam, OperMode operMode, String...params);
+	<T extends Serializable> Page pageList(T t, Page page, OrderMode orderMode, String orderParam, OperMode operMode, String...params);
 
 	/**
 	 * 分页查询
@@ -31,7 +31,7 @@ public interface HibernateService {
 	 * @param params 查询参数
 	 * @return
 	 */
-	<T extends Serializable> Page<T> pageList(T t, int pn, OperMode operMode, String...params);
+	<T extends Serializable> Page pageList(T t, Page page, OperMode operMode, String...params);
 	
 	/**
 	 * 按HQL分页对象
@@ -39,7 +39,7 @@ public interface HibernateService {
 	 * @param hql hql语句
 	 * @return
 	 */
-	<T extends Serializable> Page<T> pageList(int pn, String hql);
+	<T extends Serializable> Page pageList(Page page, String hql);
 	
 	/**
 	 * 按sql分页
@@ -47,7 +47,7 @@ public interface HibernateService {
 	 * @param sql 本地sql语句
 	 * @return
 	 */
-	List<?> pageSqlList(int pn, String sql);
+	List<?> pageSqlList(Page page, String sql);
 	
 	/**
 	 * 根据Hql查询对象

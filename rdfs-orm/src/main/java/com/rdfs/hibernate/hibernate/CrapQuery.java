@@ -13,8 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.transform.ResultTransformer;
 
 import com.rdfs.core.bean.Page;
-import com.rdfs.core.utils.AuthUtil;
-import com.rdfs.core.utils.StringUtils;
 
 
 
@@ -67,23 +65,12 @@ public class CrapQuery<Q> {
 		return (List<T>)getResultList(cacheable);
 	}
 	
-	public Page<Q> getResultList(int pn){
-		Page<Q> page = new Page<Q>();
-		page.setNum(pn);
-		initPage(page,false);
-		this.setFirstResult((page.getNum()-1)*page.getSize());
-		this.setMaxResult(page.getSize());
-		page.setItems(getResultList());
-		
-		return page;
-	}
-	
 	/**
 	 * 获取查询结果集
 	 * @param page
 	 * @return
 	 */
-	public Page<Q> getResultList(Page<Q> page) {
+	public Page getResultList(Page page) {
 		return getResultList(page,false);
 	}
 	
@@ -93,10 +80,10 @@ public class CrapQuery<Q> {
 	 * @param cacheable 是否使用缓存
 	 * @return
 	 */
-	public Page<Q> getResultList(Page<Q> page,boolean cacheable) {
+	public Page getResultList(Page page,boolean cacheable) {
 		initPage(page,cacheable);
 		this.setFirstResult(page.getStart());
-		this.setMaxResult(page.getSize());
+		this.setMaxResult(page.getLimit());
 		page.setItems(getResultList(cacheable));
 		return page;
 	}
@@ -106,17 +93,10 @@ public class CrapQuery<Q> {
 	 * @param cacheable 是否使用缓存 
 	 * @return
 	 */
-	private Page<Q> initPage(Page<Q> page,boolean cacheable){
+	private Page initPage(Page page,boolean cacheable){
 		Query cntQuery;
 		String ql = query.getQueryString();
-		//ql = ql.replaceAll("FROM", "from");
 		if(query instanceof SQLQuery){
-			//如果是SQL
-			//String sql = "select count(*) "+ql.substring(ql.indexOf("from")).replaceAll("[fF][eE][tT][Cc][Hh]", "");
-			//String tmpHql = sql.replaceAll("\n", " ").replaceAll("\r", " ");
-			//int idx = tmpHql.indexOf(" order by ");
-			//if(idx!=-1)
-				//sql = sql.substring(0, idx);
 			String sql = "select count(*) from (" + ql +") cntQuery";
 			cntQuery = session.createSQLQuery(sql);
 		}else{
@@ -144,11 +124,6 @@ public class CrapQuery<Q> {
 		if(cnt!=null)
 			page.setCount(cnt.intValue());
 		
-		String pageSize = AuthUtil.getParam("_page_size");
-		if(StringUtils.isBlank(pageSize)){
-			pageSize = "10";
-		}
-		page.setSize(Integer.parseInt(pageSize));
 		return page;
 	}
 	

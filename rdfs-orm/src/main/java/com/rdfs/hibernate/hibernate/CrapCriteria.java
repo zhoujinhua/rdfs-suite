@@ -24,8 +24,6 @@ import org.hibernate.transform.ResultTransformer;
 
 import com.rdfs.core.bean.Page;
 import com.rdfs.core.contants.Constants;
-import com.rdfs.core.utils.AuthUtil;
-import com.rdfs.core.utils.StringUtils;
 import com.rdfs.hibernate.enums.OperMode;
 import com.rdfs.hibernate.utils.BeanInvokeUtils;
 
@@ -75,11 +73,11 @@ public class CrapCriteria<C> implements Serializable{
 		return query.list();
 	}
 	
-	public Page<C> getResultList(Page<C> page,boolean cacheable){
+	public Page getResultList(Page page,boolean cacheable){
 		this.setCacheable(cacheable);
 		initPage(page);
-		this.setFirstResult((page.getNum()-1)*page.getSize());
-		this.setMaxResults(page.getSize());
+		this.setFirstResult(page.getStart());
+		this.setMaxResults(page.getLimit());
 		page.setItems(getResultList());
 		return page;
 	}
@@ -115,27 +113,16 @@ public class CrapCriteria<C> implements Serializable{
 		return new CrapCriteria<>(query, count);
 	}
 	
-	public Page<C> getResultList(int pn){
-		Page<C> page = new Page<C>();
-		page.setNum(pn);
-		initPage(page);
-		this.setFirstResult((page.getNum()-1)*page.getSize());
-		this.setMaxResults(page.getSize());
-		page.setItems(getResultList());
-		
-		return page;
-	}
-	
 	/**
 	 * 分页获取查询结果
 	 * @param page
 	 * @return
 	 */
-	public Page<C> getResultList(Page<C> page){
+	public Page getResultList(Page page){
 		return getResultList(page,false);
 	}
 	
-	private Page<C> initPage(Page<C> page){
+	private Page initPage(Page page){
 		//统计记录数
 		Number countNum = 0;
 		count.setProjection(Projections.rowCount());
@@ -144,11 +131,6 @@ public class CrapCriteria<C> implements Serializable{
 		if(countNum!=null)
 			page.setCount(countNum.intValue());
 		
-		String pageSize = AuthUtil.getParam("_page_size");
-		if(StringUtils.isBlank(pageSize)){
-			pageSize = "10";
-		}
-		page.setSize(Integer.parseInt(pageSize));
 		return page;
 	}
 

@@ -20,7 +20,7 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends Serializable> Page<T> pageList(T t, int pn, OrderMode orderMode, String orderParam,
+	public <T extends Serializable> Page pageList(T t, Page page, OrderMode orderMode, String orderParam,
 			OperMode operMode, String... params) {
 		if(t == null){
 			throw new RuntimeException("查询失败,bean不能为空.");
@@ -39,22 +39,21 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 				cri.addOrder(Order.desc(orderParam));
 			}
 		}
-		return cri.getResultList(pn);
+		return cri.getResultList(page);
 	}
 	
 	@Override
-	public <T extends Serializable> Page<T> pageList(T t, int pn, OperMode operMode, String...params) {
-		return pageList(t, pn, null, null, operMode, params);
+	public <T extends Serializable> Page pageList(T t, Page page, OperMode operMode, String...params) {
+		return pageList(t, page, null, null, operMode, params);
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
-	public <T extends Serializable> Page<T> pageList(int pn, String hql) {
-		return getSession().createQuery(hql).getResultList(pn);
+	public <T extends Serializable> Page pageList(Page page, String hql) {
+		return getSession().createQuery(hql).getResultList(page);
 	}
 	
-	public List<?> pageSqlList(int pn, String sql){
-		return (List<?>) getSession().createNativeQuery(sql).getResultList(pn);
+	public List<?> pageSqlList(Page page, String sql){
+		return (List<?>) getSession().createNativeQuery(sql).getResultList(page);
 	}
 	
 	@Override

@@ -89,6 +89,7 @@
 			<tx:method name="insert*" propagation="REQUIRED" />
 			<tx:method name="update*" propagation="REQUIRED" />
 			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="submit*" propagation="REQUIRED" />
 			
 			<!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 -->
 			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
