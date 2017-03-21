@@ -9,6 +9,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,6 +20,7 @@ import com.rdfs.core.utils.AuthUtil;
  *拦截没有登陆情况下方view文件夹下的JSP页面
  * Version: 1.0
  */
+@WebFilter(urlPatterns={"/view/*"}, filterName="urlFilter", asyncSupported=true) 
 public class BackURLFilter implements Filter{
 	
 	protected FilterConfig filterConfig = null;

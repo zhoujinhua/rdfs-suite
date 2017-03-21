@@ -640,7 +640,7 @@
 						if(!_this.setting.modal){
 							_mask.hide();
 						}
-						_dialog.css({zIndex:api.nextZIndex(zIndex+1)});
+						_dialog.css({zIndex:api.nextZIndex(zIndex+105)});
 						_dialog.show();
 						//显示目标
 						_target.show();

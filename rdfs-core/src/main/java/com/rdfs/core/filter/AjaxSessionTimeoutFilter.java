@@ -7,6 +7,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +17,7 @@ import com.rdfs.core.utils.AuthUtil;
  * 解决超时访问问题
  *
  */
+@WebFilter(urlPatterns={"/*"}, filterName="ajaxSessionTimeout", asyncSupported=true) 
 public class AjaxSessionTimeoutFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
