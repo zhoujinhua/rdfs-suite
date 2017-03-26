@@ -7,6 +7,7 @@ import java.util.Map;
 import com.rdfs.core.bean.Page;
 import com.rdfs.hibernate.enums.OperMode;
 import com.rdfs.hibernate.enums.OrderMode;
+import com.rdfs.hibernate.enums.UpdateMode;
 
 
 public interface HibernateService {
@@ -123,11 +124,19 @@ public interface HibernateService {
 	<T extends Serializable> T updateEntity(T t);
 	
 	/**
-	 * 按字段更新对象
+	 * 按字段更新对象(默认包含)
 	 * @param t
 	 * @param params
 	 */
 	<T extends Serializable> T updateEntity(T t, String...params);
+	
+	/**
+	 * 按字段更新对象
+	 * mode 排除/包含
+	 * @param t
+	 * @param params
+	 */
+	<T extends Serializable> T updateEntity(T t, UpdateMode mode, String...params);
 	
 	/**
 	 * 更新保存对象

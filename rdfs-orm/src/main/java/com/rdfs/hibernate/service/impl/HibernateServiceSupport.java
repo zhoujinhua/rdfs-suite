@@ -11,6 +11,7 @@ import org.hibernate.criterion.Order;
 import com.rdfs.core.bean.Page;
 import com.rdfs.hibernate.enums.OperMode;
 import com.rdfs.hibernate.enums.OrderMode;
+import com.rdfs.hibernate.enums.UpdateMode;
 import com.rdfs.hibernate.hibernate.CrapCriteria;
 import com.rdfs.hibernate.service.HibernateService;
 import com.rdfs.hibernate.support.HibernateSupport;
@@ -122,6 +123,12 @@ public class HibernateServiceSupport extends HibernateSupport implements Hiberna
 	@Override
 	public <T extends Serializable> T updateEntity(T t, String... params) {
 		getSession().update(t, params);
+		return t;
+	}
+	
+	@Override
+	public <T extends Serializable> T updateEntity(T t, UpdateMode mode, String... params) {
+		getSession().update(t, mode, params);
 		return t;
 	}
 	

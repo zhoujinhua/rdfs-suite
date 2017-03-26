@@ -16,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.internal.SessionImpl;
 import org.hibernate.metadata.ClassMetadata;
 
+import com.rdfs.hibernate.enums.OperMode;
 import com.rdfs.hibernate.enums.UpdateMode;
 
 /**
@@ -197,7 +198,7 @@ public class CrapSession {
 	 * @param properties 需要更新的属性列表
 	 * @return
 	 */
-	public <T extends Serializable> T update(T entity,String ... properties){
+	public <T extends Serializable> T update(T entity, String ... properties){
 		return update(entity,UpdateMode.INCLUDE,properties);
 	}
 	
