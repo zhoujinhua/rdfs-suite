@@ -54,10 +54,10 @@
 		    <groupId>commons-fileupload</groupId>
 		    <artifactId>commons-fileupload</artifactId>
 		</dependency>
-		<!-- servlet -->  
-        <dependency>  
-            <groupId>javax.servlet</groupId>  
-            <artifactId>javax.servlet-api</artifactId>  
+		<!-- servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
 	    	<groupId>javax.servlet.jsp</groupId>
