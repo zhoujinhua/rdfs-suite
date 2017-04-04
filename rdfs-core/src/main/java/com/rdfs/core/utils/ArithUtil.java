@@ -32,6 +32,21 @@ public class   ArithUtil{
 	                                                                                                                             
 	  return b1.add(b2).doubleValue();                                                                                           
 	                                                                                                                             
+	} 
+	
+	public static double addAll(Double v1,Double ... properties) {                                                                              
+		BigDecimal b1 = new BigDecimal(Double.toString(v1));
+		BigDecimal b = new BigDecimal(Double.toString(0D));
+		BigDecimal bAll = new BigDecimal(Double.toString(0D));
+		for (Double d : properties) {
+			if (d==null) {
+				continue;
+			}
+			b = new BigDecimal(Double.toString(d));                                                                       
+			bAll = bAll.add(b);
+		}
+		return b1.add(bAll).doubleValue();                                                                                         
+		
 	}                                                                                                                              
 	                                                                                                                             
 	/**                                                                                                                            
@@ -199,14 +214,6 @@ public class   ArithUtil{
 	}
 	
 	public static void main(String[] args) {
-		String c = "1";
-		Double p = 1000.00d;
-		Double fee = 1387432.32323;
-		Double rate = 2.5d;
-		Double serFinRebateRate = 1.1d;
-		
-		System.out.println( ArithUtil.round(ArithUtil.mul(fee, ArithUtil.div(rate, 100)),2));
-		System.out.println(f_parseFee(c, p, ArithUtil.round(ArithUtil.mul(fee, ArithUtil.div(rate, 100)),2)));
-		System.out.println((double)Math.round(ArithUtil.mul(f_parseFee(c, p, ArithUtil.round(ArithUtil.mul(fee, ArithUtil.div(rate, 100)),2)),ArithUtil.div(serFinRebateRate, rate))));
+		System.err.println(ArithUtil.addAll(1d, 2d,35d,23.33d,null));
 	}
 }
